@@ -1,17 +1,20 @@
-import { CityData, CityMark, Image } from '../../types/types';
-import { getImageSrcById } from '../../utils/utils';
+import { ImagesContext } from '../..';
+import { PropertyData, PropertyMark, Image } from '../../types/types';
+import { getImageSrcById, ratingToWidth } from '../../utils/utils';
+import { useContext } from 'react';
 
 type CityProps = {
-  data: CityData;
-  images: Image[];
+  data: PropertyData;
 };
 
-export function City({ data, images }: CityProps): JSX.Element {
-  const { title, rating, mark, price, type, imgId } = data;
-  const imageSrc = getImageSrcById(images, imgId) || 'apartment-01.jpg';
+export const City = ({ data }: CityProps): JSX.Element => {
+  const { title, rating, mark, price, type, imageIds } = data;
+  const images: Image[] = useContext(ImagesContext).places;
+  const imageSrc = getImageSrcById(images, imageIds[0]) || 'apartment-01.jpg';
+
   return (
     <article className="cities__card place-card">
-      {mark === CityMark.Premium &&
+      {mark === PropertyMark.Premium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
@@ -30,7 +33,7 @@ export function City({ data, images }: CityProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${rating * 20}%` }}></span>
+            <span style={{ width: ratingToWidth(rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -41,4 +44,4 @@ export function City({ data, images }: CityProps): JSX.Element {
       </div>
     </article>
   );
-}
+};

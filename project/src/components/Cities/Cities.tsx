@@ -1,12 +1,11 @@
 import { City } from '../City/City';
 import { useContext } from 'react';
-import { CitiesContext, ImagesContext } from '../../index';
-import { CityData, Image } from '../../types/types';
+import { CitiesContext } from '../../index';
+import { PropertyData } from '../../types/types';
 import { ACTIVE_CITY } from '../../const';
 
-export function Cities(): JSX.Element {
-  const citiesData: CityData[] = useContext(CitiesContext);
-  const imagesData: Image[] = useContext(ImagesContext);
+export const Cities = (): JSX.Element => {
+  const citiesData: PropertyData[] = useContext(CitiesContext);
   return (
     <div className="cities">
       <div className="cities__places-container container">
@@ -34,7 +33,6 @@ export function Cities(): JSX.Element {
                 <City
                   key={city.id}
                   data={city}
-                  images={imagesData}
                 />
               ))}
           </div>
@@ -45,4 +43,4 @@ export function Cities(): JSX.Element {
       </div>
     </div>
   );
-}
+};

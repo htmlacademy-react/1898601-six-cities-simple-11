@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { ACTIVE_CITY, CITIES } from '../../const';
 
-export function CitiesNavigation() {
+export const CitiesNavigation = (): JSX.Element => {
   const cities: { name: string; id: number; isActive: boolean }[] = CITIES.map(
     (city, i) => ({ name: city, id: i, isActive: city === ACTIVE_CITY }));
 
@@ -24,4 +24,4 @@ export function CitiesNavigation() {
       </div>
     </>
   );
-}
+};

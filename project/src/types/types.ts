@@ -1,21 +1,37 @@
-export enum CityMark {
+export type Image = {
+  id: string;
+  src: string;
+};
+
+export type User = {
+  id: string;
+  avatarId: string;
+  name: string;
+  email: string;
+};
+
+export type Review = {
+  id: string;
+  authorId: string;
+  content: string;
+  rating: number;
+  date: Date;
+};
+
+export enum PropertyMark {
   Standard = 'Standard',
   Premium = 'Premium',
 }
 
-// Type for the offer (a flat, apartments, etc)
-export type CityData = {
-  id: number | string;
+export type PropertyData = {
+  id: string;
   title: string;
   city: string;
   rating: number;
-  mark: CityMark;
+  mark: PropertyMark;
   price: number;
   type: string;
-  imgId: number | string;
-};
-
-export type Image = {
-  id: number | string;
-  src: string;
+  imageIds: string[];
+  reviewIds: string[];
+  options: string[];
 };
